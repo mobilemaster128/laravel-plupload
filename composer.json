@@ -13,6 +13,14 @@
         "large files"
     ],
     "license": "MIT",
+    "extra": {
+      "laravel": {
+        "providers": ["JildertMiedema\\LaravelPlupload\\LaravelPluploadServiceProvider"],
+        "aliases": {
+          "Plupload": "JildertMiedema\\LaravelPlupload\\Facades\\Plupload"
+        }
+      }
+    },
     "require": {
         "php": ">=5.5.0",
         "illuminate/support": "^5.1"
