@@ -6,7 +6,6 @@ class Builder
 {
     private $settings;
     private $prefix;
-    private $scriptUrl = '/vendor/jildertmiedema/laravel-plupload/js/plupload.full.min.js';
 
     public function createJsInit()
     {
@@ -23,7 +22,17 @@ class Builder
 
     public function addScripts()
     {
-        return sprintf('<script type="text/javascript" src="%s"></script>', $this->scriptUrl);
+        $scripts = <<<EOC
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+        <link href="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="/vendor/jildertmiedema/laravel-plupload/js/plupload.full.min.js"></script>
+        <script src="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
+EOC;
+        return $scripts;
     }
 
     public function getContainer()
@@ -98,18 +107,6 @@ class Builder
     public function withPrefix($value)
     {
         $this->setPrefix($value);
-
-        return $this;
-    }
-
-    public function setScriptUrl($value)
-    {
-        $this->scriptUrl = $value;
-    }
-
-    public function withScriptUrl($value)
-    {
-        $this->setScriptUrl($value);
 
         return $this;
     }
