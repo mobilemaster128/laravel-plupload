@@ -32,7 +32,7 @@ If you want to use te build in builder insert the facade
 To publish the assets:
 
 ```sh
-php artisan vendor:publish
+php artisan vendor:publish --provider="JildertMiedema\LaravelPlupload\LaravelPluploadServiceProvider"
 ```
 ## Receiving files
 
