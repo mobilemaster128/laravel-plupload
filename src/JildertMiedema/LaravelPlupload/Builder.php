@@ -114,6 +114,8 @@ EOC;
         $settings['browse_button'] = $this->prefix.'-browse-button';
         $settings['container'] = $this->prefix.'-container';
         $settings['url'] = '/upload';
+        $settings['flash_swf_url'] = '/vendor/jildertmiedema/laravel-plupload/js/Moxie.swf';
+        $settings['silverlight_xap_url'] = '/vendor/jildertmiedema/laravel-plupload/js/Moxie.xap';
         $settings['headers'] = [
             'Accept' => 'application/json',
             'X-CSRF-TOKEN' => csrf_token(),
