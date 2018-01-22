@@ -6,6 +6,7 @@ class Builder
 {
     private $settings;
     private $prefix;
+    private $scriptUrl = '/vendor/jildertmiedema/laravel-plupload/js/plupload.full.min.js';
 
     public function createJsInit()
     {
@@ -17,6 +18,19 @@ class Builder
         $script = sprintf('%s_uploader.init();', $this->prefix);
         $script .= sprintf('document.getElementById(\'%s-start-upload\').onclick = function() {%s_uploader.start();};', $this->prefix, $this->prefix);
 
+        return $script;
+    }
+
+    public function addScript()
+    {
+        return sprintf('<script type="text/javascript" src="%s"></script>', $this->scriptUrl);
+    }
+
+    public function createJsFrame()
+    {
+        $prefix = $this->prefix;
+        $settings = json_encode($this->getSettings());
+        $script = "$(\"div#{$prefix}-container\").plupload({{$settings}});";
         return $script;
     }
 
@@ -46,17 +60,51 @@ EOC;
         return $html;
     }
 
+    public function getFrame()
+    {
+        $prefix = $this->prefix;
+        $html = "<div id=\"{$prefix}-container\">";
+        $html .= "<p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>";
+        $html .= '</div>';
+
+        return $html;
+    }
+
     public function createHtml()
     {
         $html = '';
         $html .= $this->getContainer();
-        $html .= $this->addScripts();
+        $html .= $this->addScript();
         $html .= '<script type="text/javascript">';
         $html .= $this->createJsInit();
         $html .= $this->createJsRun();
         $html .= '</script>';
 
         return $html;
+    }
+
+    public function createFrame()
+    {
+        $html = '';
+        $html .= $this->getFrame();
+        $html .= $this->addScripts();
+        $html .= '<script type="text/javascript">';
+        $html .= $this->createJsFrame();
+        $html .= '</script>';
+
+        return $html;
+    }
+    
+    public function setScriptUrl($value)
+    {
+        $this->scriptUrl = $value;
+    }
+
+    public function withScriptUrl($value)
+    {
+        $this->setScriptUrl($value);
+
+        return $this;
     }
 
     public function getDefaultSettings()
