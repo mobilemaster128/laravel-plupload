@@ -52,7 +52,7 @@ Route::post('/upload', function()
 
 ## Sending files
 
-There are 3 ways to send files with this plugin.
+There are 4 ways to send files with this plugin.
 
 ### 1. Use default plupload html
 
@@ -122,6 +122,14 @@ echo Plupload::init([
 ])->withPrefix('current')->createHtml();
 ```
 
+### 4. Extended plupload frame builder
+
+```php
+echo Plupload::init([
+    'url' => 'upload',
+    'chunk_size' => '100kb',
+])->withPrefix('current')->createFrame();
+```
 
 ## Alternatives
 
