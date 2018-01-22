@@ -30,7 +30,7 @@ class Builder
     {
         $prefix = $this->prefix;
         $settings = json_encode($this->getSettings());
-        $script = "$(\"div#{$prefix}-container\").plupload({$settings});";
+        $script = "$(\"#{$prefix}-container\").plupload({$settings});";
         return $script;
     }
 
