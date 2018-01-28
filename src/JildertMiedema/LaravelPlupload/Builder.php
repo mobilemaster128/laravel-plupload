@@ -8,6 +8,8 @@ class Builder
     private $prefix;
     private $scriptUrl = '/vendor/jildertmiedema/laravel-plupload/js/plupload.full.min.js';
 
+    private static $hasOne = false;
+
     public function createJsInit()
     {
         return sprintf('var %s_uploader = new plupload.Uploader(%s);', $this->prefix, json_encode($this->getSettings()));
@@ -74,7 +76,10 @@ EOC;
     {
         $html = '';
         $html .= $this->getContainer();
-        $html .= $this->addScript();
+        if (!Builder::$hasOne) {
+            $html .= $this->addScript();
+        }
+        Builder::$hasOne = true;
         $html .= '<script type="text/javascript">';
         $html .= $this->createJsInit();
         $html .= $this->createJsRun();
