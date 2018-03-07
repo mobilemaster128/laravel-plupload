@@ -2,7 +2,7 @@
 
 return [
     'lang' => null,
-    'bootstrap' => false,
-    'jquery' => false,
-    'jquery-ui' => false,
+    'bootstrap' => true,
+    'jquery' => true,
+    'jquery-ui' => true,
 ];
