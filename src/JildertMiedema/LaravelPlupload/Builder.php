@@ -43,7 +43,7 @@ class Builder
             $scripts .= '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />';
         } 
         if (config('plupload.jquery-ui') !== NULL) { 
-            $scripts .= '<link href="//code.jquery.com/ui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />';
+            $scripts .= '<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />';
         }
         $scripts .= '<link href="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" media="all" rel="stylesheet" type="text/css" />';
         if (config('plupload.jquery') !== NULL) { 
