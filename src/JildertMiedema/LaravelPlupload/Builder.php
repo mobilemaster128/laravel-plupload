@@ -38,16 +38,28 @@ class Builder
 
     public function addScripts()
     {
-        $scripts = <<<EOC
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-        <link href="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" media="all" rel="stylesheet" type="text/css" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="/vendor/jildertmiedema/laravel-plupload/js/plupload.full.min.js"></script>
-        <script src="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
-EOC;
+        $scripts = '';
+        if (config('plupload.bootstrap') !== NULL) {
+            $scripts .= '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />';
+        } 
+        if (config('plupload.jquery-ui') !== NULL) { 
+            $scripts .= '<link href="//code.jquery.com/ui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />';
+        }
+        $scripts .= '<link href="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" media="all" rel="stylesheet" type="text/css" />';
+        if (config('plupload.jquery') !== NULL) { 
+            $scripts .= '<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>';
+        }
+        if (config('plupload.bootstrap') !== NULL) {
+            $scripts .= '<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>';
+        } 
+        if (config('plupload.jquery-ui') !== NULL) { 
+            $scripts .= '<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>';
+        }
+        $scripts .= '<script src="/vendor/jildertmiedema/laravel-plupload/js/plupload.full.min.js"></script>';
+        $scripts .= '<script src="/vendor/jildertmiedema/laravel-plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>';        
+        if (config('plupload.lang') !== NULL) { 
+            $scripts .= sprintf('<script src="/vendor/jildertmiedema/laravel-plupload/js/i18n/%s.js"></script>', config('plupload.lang'));
+        }
         return $scripts;
     }
 

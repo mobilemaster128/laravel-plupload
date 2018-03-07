@@ -28,9 +28,15 @@ class LaravelPluploadServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // asset publish
         $this->publishes([
             __DIR__.'/../../../public/assets' => public_path('vendor/jildertmiedema/laravel-plupload/'),
-        ], 'public');
+        ], 'assets');
+        
+        // config publish
+        $this->publishes([
+            __DIR__.'/../../../config/plupload.php' => config_path('fileinput.php'),
+        ], 'config');
     }
 
     /**
