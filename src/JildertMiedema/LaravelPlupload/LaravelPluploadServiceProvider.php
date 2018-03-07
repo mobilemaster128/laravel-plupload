@@ -37,6 +37,8 @@ class LaravelPluploadServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../../config/plupload.php' => config_path('fileinput.php'),
         ], 'config');
+
+        $this->mergeConfigFrom(__DIR__.'/../../../config/plupload.php', 'plupload');
     }
 
     /**
